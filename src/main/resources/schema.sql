@@ -1,10 +1,16 @@
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS dvds;
+DROP TABLE IF EXISTS renrals;
+DROP TABLE IF EXISTS rentals;
+DROP TYPE IF EXISTS role;
+
 CREATE TYPE role AS ENUM ('ADMIN', 'USER');
 
-CREATE TABLE authentications (
+CREATE TABLE users (
 	id serial PRIMARY KEY,
 	username varchar(255) NOT NULL,
 	password varchar(255) NOT NULL,
-	authority role NOT NULL,
+	authority role NOT NULL
 );
 
 CREATE TABLE dvds (
@@ -12,5 +18,15 @@ CREATE TABLE dvds (
 	dvdname varchar(255) NOT NULL,
 	genre varchar(255) NOT NULL,
 	rental_days INT NOT NULL,
-	FOREIGN KEY (authen_id) REFERENCES authentications(id)
+	stock INT NOT NULL
+);
+
+CREATE TABLE rentals (
+	id serial PRIMARY KEY,
+	user_id INT NOT NULL,
+	dvd_id INT NOT NULL,
+	rental_date timestamp without time zone,
+	return_date timestamp without time zone,
+	FOREIGN KEY (user_id) REFERENCES users(id),
+	FOREIGN KEY (dvd_id) REFERENCES dvds(id)
 );
