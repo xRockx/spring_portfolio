@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DVDs {
+public class DVD {
 	private Integer id;
 	private String dvdname;
 	private String genre;

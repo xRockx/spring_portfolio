@@ -1,8 +1,5 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS dvds;
-DROP TABLE IF EXISTS renrals
-
-
 DROP TABLE IF EXISTS rentals;
 DROP TYPE IF EXISTS role;
 
@@ -25,8 +22,8 @@ CREATE TABLE dvds (
 
 CREATE TABLE rentals (
 	id serial PRIMARY KEY,
-	user_id INT NOT NULL,
-	dvd_id INT NOT NULL,
+	user_id INT,
+	dvd_id INT,
 	rental_date timestamp without time zone,
 	return_date timestamp without time zone,
 	FOREIGN KEY (user_id) REFERENCES users(id),
