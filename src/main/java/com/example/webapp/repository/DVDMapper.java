@@ -13,10 +13,15 @@ public interface DVDMapper {
 	 */
 	List<DVD> selectAll();
 	
-	
 	/**
 	 * 単体の取得
 	 */
-	DVD selectById();
+	DVD selectById(Integer id);
+	
+	
+	/**
+	 * DVDの追加
+	 */
+	void insert(DVD dvd);
 	
 }
