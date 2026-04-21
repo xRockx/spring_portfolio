@@ -9,19 +9,23 @@ import com.example.webapp.entity.DVD;
 @Mapper
 public interface DVDMapper {
 	/**
-	 * 全DVDの取得
+	 * レンタル可能DVD一覧の取得
 	 */
-	List<DVD> selectAll();
+	List<DVD> selectRentalAll();
 	
 	/**
-	 * 単体の取得
+	 * ユーザーの返却可能DVD一覧の取得
 	 */
-	DVD selectById(Integer id);
-	
+	List<DVD> selectReturnAll(Integer id);
 	
 	/**
 	 * DVDの追加
 	 */
 	void insert(DVD dvd);
+	
+	/**
+	 * DVDの更新（レンタルユーザーの削除など）
+	 */
+	void update(DVD dvd);
 	
 }
