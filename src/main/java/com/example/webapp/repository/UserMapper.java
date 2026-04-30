@@ -1,7 +1,10 @@
 package com.example.webapp.repository;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.example.webapp.entity.User;
 
+@Mapper
 public interface UserMapper {
 	/**
 	 * 単体取得
@@ -11,7 +14,7 @@ public interface UserMapper {
 	/**
 	 * ユーザー名検索（ログイン用仮）
 	 */
-	User selectByUseername(String username);
+	User selectByUsername(String username);
 	
 	/**
 	 * ユーザー追加

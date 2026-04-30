@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.webapp.repository.DVDMapper">
+
+	<resultMap id="DVDMap" type="com.example.webapp.entity.DVD">
+		<id property="id" column="id" />
+		<result property="dvdName" column="dvdname" />
+		<result property="genre" column="genre" />
+		<result property="rentalDays" column="rental_days" />
+		<result property="stock" column="stock" />
+		<result property="usersId" column="users_id" />
+	</resultMap>
+
 	<!-- 【SELECT】レンタル可能DVD一覧の取得 -->
-	<select id="selectRentalAll" resultType="com.example.webapp.entity.DVD">
-		SELECT id, dvdname, genre, rental_days, users_id FROM dvds WHERE users_id IS NULL;
+	<select id="selectRentalAll"
+		resultType="com.example.webapp.entity.DVD">
+		SELECT id, dvdname, genre, rental_days, users_id FROM dvds
+		WHERE users_id IS NULL;
 	</select>
 	<!-- 【SELECT】ユーザーの返却可能DVD一覧の取得 -->
-	<select id="selectReturnAll" resultType="com.example.webapp.entity.DVD">
-		SELECT id, dvdname, genre, rental_days, users_id FROM dvds WHERE users_id = #{id};
+	<select id="selectReturnAll"
+		resultType="com.example.webapp.entity.DVD">
+		SELECT id, dvdname, genre, rental_days, users_id FROM dvds
+		WHERE users_id = #{id};
 	</select>
 	<!-- 【INSERT】DVDの追加 -->
 	<insert id="insert">
-		INSERT INTO dvds (dvdname, genre, rental_days, users_id) VALUES
+		INSERT INTO dvds (dvdname, genre, rental_days,
+		users_id) VALUES
 		(#{dvdname}, #{genre}, #{rental_days}, #{users_id});
 	</insert>
 	<!-- 【UPDATE】DVDの更新（レンタルユーザーの削除） -->
 	<update id="update">
-		UPDATE dvds SET users_id = NULL WHERE users_id = #{id};
+		UPDATE dvds SET users_id = NULL WHERE users_id =
+		#{id};
 	</update>
 </mapper>
