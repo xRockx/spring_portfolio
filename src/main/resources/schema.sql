@@ -16,7 +16,7 @@ CREATE TABLE dvds (
 	dvdname varchar(255) NOT NULL,
 	genre varchar(255) NOT NULL,
 	rental_days INT NOT NULL,
-	users_id INT NOT NULL,
+	users_id INT,
 	FOREIGN KEY (users_id) REFERENCES users(id)
 );
 

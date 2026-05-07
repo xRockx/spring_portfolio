@@ -13,13 +13,13 @@
 
 	<!-- 【SELECT】レンタル可能DVD一覧の取得 -->
 	<select id="selectRentalAll"
-		resultType="com.example.webapp.entity.DVD">
+		resultMap="DVDMap">
 		SELECT id, dvdname, genre, rental_days, users_id FROM dvds
 		WHERE users_id IS NULL;
 	</select>
 	<!-- 【SELECT】ユーザーの返却可能DVD一覧の取得 -->
 	<select id="selectReturnAll"
-		resultType="com.example.webapp.entity.DVD">
+		resultMap="DVDMap">
 		SELECT id, dvdname, genre, rental_days, users_id FROM dvds
 		WHERE users_id = #{id};
 	</select>
@@ -27,7 +27,7 @@
 	<insert id="insert">
 		INSERT INTO dvds (dvdname, genre, rental_days,
 		users_id) VALUES
-		(#{dvdname}, #{genre}, #{rental_days}, #{users_id});
+		(#{dvdName}, #{genre}, #{rentalDays}, #{usersId});
 	</insert>
 	<!-- 【UPDATE】DVDの更新（レンタルユーザーの削除） -->
 	<update id="update">

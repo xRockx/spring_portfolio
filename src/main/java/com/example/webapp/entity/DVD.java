@@ -11,7 +11,7 @@ public class DVD {
 	private Integer id;
 	private String dvdname;
 	private String genre;
-	private Integer rental_days;
+	private Integer rentalDays;
 	private Integer userId;
 	
 }
