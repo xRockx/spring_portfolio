@@ -8,7 +8,7 @@
 		<result property="genre" column="genre" />
 		<result property="rentalDays" column="rental_days" />
 		<result property="stock" column="stock" />
-		<result property="usersId" column="users_id" />
+		<result property="userId" column="users_id" />
 	</resultMap>
 
 	<!-- 【SELECT】レンタル可能DVD一覧の取得 -->
@@ -27,7 +27,7 @@
 	<insert id="insert">
 		INSERT INTO dvds (dvdname, genre, rental_days,
 		users_id) VALUES
-		(#{dvdName}, #{genre}, #{rentalDays}, #{usersId});
+		(#{dvdName}, #{genre}, #{rentalDays}, #{userId});
 	</insert>
 	<!-- 【UPDATE】DVDの更新（レンタルユーザーの削除） -->
 	<update id="update">

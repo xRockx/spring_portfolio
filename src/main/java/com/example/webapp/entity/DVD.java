@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DVD {
 	private Integer id;
-	private String dvdname;
+	private String dvdName;
 	private String genre;
 	private Integer rentalDays;
 	private Integer userId;

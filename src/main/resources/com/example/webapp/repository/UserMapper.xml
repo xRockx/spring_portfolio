@@ -5,12 +5,13 @@
 	<!-- 【SELECT】単体取得 -->
 	<select id="selectById"
 		resultType="com.example.webapp.entity.User">
-		SELECT id, username, password, authority FROM users;
+		SELECT id, username, password, authority FROM users
+		WHERE id = #{id};
 	</select>
 	<!-- 【INSERT】ユーザー追加 -->
 	<insert id="insert">
-		INSERT INTO users (id, username, password, authority) VALUES
-		(#{username}, #{password}, #{authority});
+		INSERT INTO users (username, password, authority) VALUES
+		(#{username}, #{password}, #{authority}::role);
 	</insert>
 	<!-- 【DELETE】ユーザー削除 -->
 	<delete id="delete">
