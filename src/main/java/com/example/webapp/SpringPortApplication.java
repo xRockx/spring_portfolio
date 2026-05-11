@@ -44,8 +44,10 @@ public class SpringPortApplication {
 			System.out.println(d);
 		}
 		
-		System.out.println("==== 単体取得 ===");
+		System.out.println("==== 単体取得ID ===");
 		System.out.println(usermapper.selectById(1));
+		System.out.println("==== 単体取得名前 ===");
+		System.out.println(usermapper.selectByUsername("user"));
 		System.out.println("==== ユーザー追加 ===");
 		User user = new User(2,"ユーザー","pass", Role.USER);
 		usermapper.insert(user);
