@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>メニュー</title>
+<link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+<body>
+	<div class="container">
+
+		<div class="header">
+
+			<div class="title">メニュー</div>
+
+			<div class="username">
+				ユーザー名: <span th:text="${loginUserName}"></span>
+			</div>
+
+		</div>
+
+		<div class="menu-area">
+
+			<form th:action="@{/dvd/rental}" method="get" class="menu-form">
+				<button type="submit" class="menu-button">DVDレンタル</button>
+			</form>
+
+			<form th:action="@{/dvd/return}" method="get" class="menu-form">
+				<button type="submit" class="menu-button">DVD返却</button>
+			</form>
+
+			<form th:action="@{/user/register}" method="get" class="menu-form">
+				<button type="submit" class="menu-button">ユーザー登録</button>
+			</form>
+
+			<form th:action="@{/user/delete}" method="get" class="menu-form">
+				<button type="submit" class="menu-button">ユーザー削除</button>
+			</form>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

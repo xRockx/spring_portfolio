@@ -15,5 +15,7 @@ public class DVDController {
 	/**	DI */
 	private final DVDService dvdservice;
 	
-	
+//	public String rentalDVD() {
+//		
+//	}
 }
