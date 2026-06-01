@@ -13,18 +13,18 @@
 			<div class="title">メニュー</div>
 
 			<div class="username">
-				ユーザー名: <span th:text="${username}"></span>
+				ユーザー名: <span th:text="${user.username}"></span>
 			</div>
 
 		</div>
 
 		<div class="menu-area">
 
-			<form th:action="@{/dvd/rental}" method="get" class="menu-form">
+			<form th:action="@{/dvd/rental/1}" method="get" class="menu-form">
 				<button type="submit" class="menu-button">DVDレンタル</button>
 			</form>
 
-			<form th:action="@{/dvd/return}" method="get" class="menu-form">
+			<form th:action="@{/dvd/return/1}" method="get" class="menu-form">
 				<button type="submit" class="menu-button">DVD返却</button>
 			</form>
 

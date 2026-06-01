@@ -22,7 +22,7 @@ public class MenuController {
 		//templatesフォルダ配下のmenu.htmlに遷移
 		
 		User user = userservice.findByIdUser(1);
-		model.addAttribute("username", user.getUsername());
+		model.addAttribute("user", user);
 		
 		return "menu";
 	}
