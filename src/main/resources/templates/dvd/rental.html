@@ -7,34 +7,32 @@
 </head>
 <body>
 	<div class="container">
-		<div class="title">メニュー</div>
-	</div>
-	<p class="message" th:text="message"></p>
-	
-	<div class="table-scroll">
-		<table class="dvd-table">
-			<thead>
-				<tr>
-					<th>DVDタイトル</th>
-					<th>ジャンル</th>
-					<th>レンタル日数</th>
-				</tr>
-			</thead>
-			
-			<tbody>
-				<tr th:each="dvd : ${dvdList}">
-					<td th:text="${dvd.dvdName}"></td>
-					<td th:text="${dvd.genre}"></td>
-					<td th:text="${dvd.rentalDays}"></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
-	<div class="button-area">
-		<button class="rental-button">
-			レンタル
-		</button>
+		<div class="title">DVDレンタル</div>
+		<p class="message" th:text="${message}"></p>
+
+		<div class="table-scroll">
+			<table class="dvd-table">
+				<thead>
+					<tr>
+						<th>DVDタイトル</th>
+						<th>ジャンル</th>
+						<th>レンタル日数</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr th:each="dvd : ${dvdList}">
+						<td th:text="${dvd.dvdName}"></td>
+						<td th:text="${dvd.genre}"></td>
+						<td th:text="${dvd.rentalDays}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="button-area">
+			<button class="rental-button">レンタル</button>
+		</div>
 	</div>
 </body>
 </html>
