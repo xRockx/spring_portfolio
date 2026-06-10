@@ -9,30 +9,35 @@
 	<div class="container">
 		<div class="title">DVDレンタル</div>
 		<p class="message" th:text="${message}"></p>
+		<form action="@{/dvds/rental/{id}(id=${user.id})}" method="post" class="dvd-form">
+			<div class="table-scroll">
+				<table class="dvd-table">
+					<thead>
+						<tr>
+							<th>レンタルチェック</th>
+							<th>DVDタイトル</th>
+							<th>ジャンル</th>
+							<th>レンタル日数</th>
+						</tr>
+					</thead>
 
-		<div class="table-scroll">
-			<table class="dvd-table">
-				<thead>
-					<tr>
-						<th>DVDタイトル</th>
-						<th>ジャンル</th>
-						<th>レンタル日数</th>
-					</tr>
-				</thead>
+					<tbody>
+						<tr th:each="dvd : ${dvdList}">
+							<td><input type="checkbox" name="dvdIds"th:value="${dvd.id}"></td>
+							<td th:text="${dvd.dvdName}"></td>
+							<td th:text="${dvd.genre}"></td>
+							<td th:text="${dvd.rentalDays}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-				<tbody>
-					<tr th:each="dvd : ${dvdList}">
-						<td th:text="${dvd.dvdName}"></td>
-						<td th:text="${dvd.genre}"></td>
-						<td th:text="${dvd.rentalDays}"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 
-		<div class="button-area">
-			<button class="rental-button">レンタル</button>
-		</div>
+			<div class="button-area">
+				<button type="submit" class="rental-button">レンタル</button>
+			</div>
+			
+		</form>
 	</div>
 </body>
 </html>
