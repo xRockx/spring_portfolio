@@ -3,6 +3,7 @@ package com.example.webapp.repository;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.webapp.entity.DVD;
 
@@ -22,6 +23,11 @@ public interface DVDMapper {
 	 * DVDの追加
 	 */
 	void insert(DVD dvd);
+	
+	/**
+	 * DVDレンタル（レンタルユーザーの追加）
+	 */
+	int rental(@Param("userId") Integer userId, @Param("dvdId") Integer dvdId);
 	
 	/**
 	 * DVDの更新（レンタルユーザーの削除など）

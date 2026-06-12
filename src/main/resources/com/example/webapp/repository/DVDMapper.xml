@@ -29,6 +29,10 @@
 		users_id) VALUES
 		(#{dvdName}, #{genre}, #{rentalDays}, #{userId});
 	</insert>
+	<!-- 【UPDATE】DVDレンタル（レンタルユーザーの追加）-->
+	<update id="rental">
+		UPDATE dvds SET users_id = #{userId} WHERE id = #{dvdId}
+	</update>
 	<!-- 【UPDATE】DVDの更新（レンタルユーザーの削除） -->
 	<update id="update">
 		UPDATE dvds SET users_id = NULL WHERE users_id =

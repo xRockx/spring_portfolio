@@ -21,6 +21,11 @@ public interface DVDService {
 	void insertDVD(DVD dvd);
 	
 	/**
+	 * DVDレンタル（レンタルユーザーの追加）
+	 */
+	void rentalDVD(Integer userId, List<Integer> dvdIds);
+	
+	/**
 	 * DVDの更新（レンタルユーザーの削除など）
 	 */
 	void updateDVD(DVD dvd);

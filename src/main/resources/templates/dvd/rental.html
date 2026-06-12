@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="title">DVDレンタル</div>
 		<p class="message" th:text="${message}"></p>
-		<form action="@{/dvds/rental/{id}(id=${user.id})}" method="post" class="dvd-form">
+		<form th:action="@{/dvds/rental/{id}(id=${user.id})}" method="post" class="dvd-form">
 			<div class="table-scroll">
 				<table class="dvd-table">
 					<thead>
@@ -23,7 +23,7 @@
 
 					<tbody>
 						<tr th:each="dvd : ${dvdList}">
-							<td><input type="checkbox" name="dvdIds"th:value="${dvd.id}"></td>
+							<td><input type="checkbox" name="dvdIds" th:value="${dvd.id}"></td>
 							<td th:text="${dvd.dvdName}"></td>
 							<td th:text="${dvd.genre}"></td>
 							<td th:text="${dvd.rentalDays}"></td>

@@ -35,6 +35,13 @@ public class DVDServiceImpl implements DVDService {
 	}
 
 	@Override
+	public void rentalDVD(Integer userId, List<Integer> dvdIds) {
+		for(Integer id : dvdIds) {
+			dvdMapper.rental(userId, id);
+		}
+	}
+	
+	@Override
 	public void updateDVD(DVD dvd) {
 		dvdMapper.update(dvd);
 	}
