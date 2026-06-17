@@ -2,19 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>DVDレンタル</title>
+<title>DVD返却</title>
 <link rel="stylesheet" th:href="@{/css/dvd.css}">
 </head>
 <body>
 	<div class="container">
-		<div class="title">DVDレンタル</div>
+		<div class="title">DVD返却</div>
 		<p class="message" th:text="${message}"></p>
-		<form th:action="@{/dvds/rental/{id}(id=${user.id})}" method="post" class="dvd-form">
+		<form th:action="@{/dvds/return/{id}(id=${user.id})}" method="post" class="dvd-form">
 			<div class="table-scroll">
 				<table class="dvd-table">
 					<thead>
 						<tr>
-							<th>レンタルチェック</th>
+							<th>返却チェック</th>
 							<th>DVDタイトル</th>
 							<th>ジャンル</th>
 							<th>レンタル日数</th>
@@ -34,11 +34,12 @@
 
 
 			<div class="button-area">
-				<button type="submit" class="rental-button">レンタル</button>
+				<button type="submit" class="rental-button">返却する</button>
 				<a th:href="@{/}" class="back-button">戻る</a>
 			</div>
 			
 		</form>
 	</div>
+
 </body>
 </html>

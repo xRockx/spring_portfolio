@@ -43,7 +43,32 @@ public class DVDController {
 			redirectAttributes.addFlashAttribute("message","DVDを選択してください。");
 		}
 		else {
-			
+			dvdservice.rentalDVD(id, dvdIds);
+			redirectAttributes.addFlashAttribute("message","レンタルが完了しました。");
+		}
+		
+		return "redirect:/dvds/rental/" + id;
+	}
+	
+	
+	@GetMapping("/return/{id}")
+	public String showReturn(@PathVariable Integer id, Model model) {
+		User user = userservice.findByIdUser(id);
+		List<DVD> dvdList = dvdservice.findReturnAllDVD(id);
+		model.addAttribute("user", user);
+		model.addAttribute("dvdList", dvdList);
+		return "dvd/return";
+	}
+	
+	@PostMapping("/return/{id}")
+	public String entryReturn(@PathVariable Integer id, @RequestParam(required = false)
+	List<Integer> dvdIds, RedirectAttributes redirectAttributes) {
+		if(dvdIds == null || dvdIds.isEmpty()) {
+			redirectAttributes.addFlashAttribute("message","DVDを選択してください。");
+		}
+		else {
+			dvdservice.updateDVD(null);
+			redirectAttributes.addFlashAttribute("message","返却が完了しました。");
 		}
 		
 		return "redirect:/dvds/rental/" + id;

@@ -27,8 +27,7 @@ body{
 }
 
 .table-scroll{
-	display: flex;
-	justify-content: center;
+	max-height: 400px;
 	overflow-y: auto;
 }
 
@@ -58,7 +57,11 @@ body{
 }
 
 .button-area{
-	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+	
 	margin-top: 60px;
 }
 
@@ -76,5 +79,26 @@ body{
 }
 
 .rental-button:hover{
+	background-color: #dddddd;
+}
+
+.back-button{
+	display: inline-block;
+	width: 200px;
+	padding: 20px 0;
+	
+	font-size: 28px;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	
+	border: 3px solid black;
+	border-radius: 20px;
+	background-color: white;
+	
+	cursor: pointer;
+}
+
+.back-button:hover{
 	background-color: #dddddd;
 }
