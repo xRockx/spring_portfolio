@@ -42,8 +42,10 @@ public class DVDServiceImpl implements DVDService {
 	}
 	
 	@Override
-	public void updateDVD(DVD dvd) {
-		dvdMapper.update(dvd);
+	public void returnofDVD(List<Integer> dvdIds) {
+		for(Integer id : dvdIds) {
+			dvdMapper.returnof(id);
+		}
 	}
 
 }

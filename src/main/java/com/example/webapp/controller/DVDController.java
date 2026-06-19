@@ -67,10 +67,10 @@ public class DVDController {
 			redirectAttributes.addFlashAttribute("message","DVDを選択してください。");
 		}
 		else {
-			dvdservice.updateDVD(null);
+			dvdservice.returnofDVD(dvdIds);
 			redirectAttributes.addFlashAttribute("message","返却が完了しました。");
 		}
 		
-		return "redirect:/dvds/rental/" + id;
+		return "redirect:/dvds/return/" + id;
 	}
 }

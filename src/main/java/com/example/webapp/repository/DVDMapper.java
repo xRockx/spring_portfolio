@@ -32,6 +32,6 @@ public interface DVDMapper {
 	/**
 	 * DVDの更新（レンタルユーザーの削除など）
 	 */
-	void update(DVD dvd);
+	void returnof(Integer dvdId);
 	
 }
