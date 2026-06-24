@@ -45,4 +45,10 @@ public class UserController {
 		}
 		return "redirect:/users/create";
 	}
+	
+	@GetMapping("/delete")
+	public String showUserDelete() {
+		return "user/delete";
+	}
+	
 }
