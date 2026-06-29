@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="title">ユーザー削除</div>
 		<p class="message" th:text="${message}"></p>
-		<form th:action="@{/users/delete}" method="post" class="user-form">
+		<form th:action="@{/users/delete/search}" method="post" class="user-form">
 
 			<div class="form-area">
 				<div class="form-row">
@@ -23,20 +23,16 @@
 				</div>
 				
 				<div class="form-row">
-					<label for="pass" class="form-label">パスワード</label>
-					<input type="password" id="pass" name="pass" class="form-control">
-				</div>
-				
-				<div class="form-row">
 					<label for="authority" class="form-label">権限</label>
 					<select id="authority" name="authority" class="form-control">
 						<option value="USER">ユーザー</option>
 						<option value="ADMIN">管理者</option>
+						
 					</select>
 				</div>
 
 				<div class="button-area">
-					<button type="submit" class="create-button">削除する</button>
+					<button type="submit" class="create-button">検索する</button>
 					<a th:href="@{/}" class="back-button">戻る</a>
 				</div>
 			</div>

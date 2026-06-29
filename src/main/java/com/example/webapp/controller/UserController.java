@@ -1,6 +1,7 @@
 package com.example.webapp.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +49,28 @@ public class UserController {
 	
 	@GetMapping("/delete")
 	public String showUserDelete() {
+		return "user/delete";
+	}
+	
+	@PostMapping("/delete/search")
+	public String searchDeleteUser(@RequestParam(required = false) Integer No,
+			@RequestParam(required = false) String name,
+			Model model) {
+		
+		User user = null;
+		
+		if(No != null) {
+			user = userservice.findByIdUser(No);
+		} else if(name == null || name.isBlank()) {
+			user = userservice.findByUsername(name);
+		}
+		
+		if(user == null) {
+			model.addAttribute("message", "該当するユーザーが見つかりません。");
+		} else {
+			model.addAttribute("deleteUser",user);
+		}
+		
 		return "user/delete";
 	}
 	
