@@ -59,16 +59,22 @@ public class UserController {
 		
 		User user = null;
 		
+		if(No == null && (name == null || name.isBlank())) {
+			model.addAttribute("message", "Noまたは氏名を入力してください。");
+			return "user/delete";
+		}
+		
 		if(No != null) {
 			user = userservice.findByIdUser(No);
-		} else if(name == null || name.isBlank()) {
+		} else {
 			user = userservice.findByUsername(name);
 		}
 		
 		if(user == null) {
-			model.addAttribute("message", "該当するユーザーが見つかりません。");
+			model.addAttribute("message", "Noまたは氏名を入力してください。");
+			return "user/delete";
 		} else {
-			model.addAttribute("deleteUser",user);
+			model.addAttribute("deleteUser", user);
 		}
 		
 		return "user/delete";

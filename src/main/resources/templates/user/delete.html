@@ -11,23 +11,21 @@
 		<p class="message" th:text="${message}"></p>
 		<form th:action="@{/users/delete/search}" method="post" class="user-form">
 
-			<div class="form-area">
+			<div class="form-area" th:object="${deleteUser}">
 				<div class="form-row">
 					<label for="No" class="form-label">No</label>
-					<input type="text" id="No" class="form-control" value="auto">
+					<input type="number" id="No" name="No" class="form-control" value="*{id}">
 				</div>
 				 
 				<div class="form-row">
 					<label for="name" class="form-label">氏名</label>
-					<input type="text" id="name" name="name" class="form-control">
+					<input type="text" id="name" name="name" class="form-control" value="*{username}">
 				</div>
 				
 				<div class="form-row">
 					<label for="authority" class="form-label">権限</label>
-					<select id="authority" name="authority" class="form-control">
-						<option value="USER">ユーザー</option>
-						<option value="ADMIN">管理者</option>
-						
+					<select id="authority" class="form-control" disabled>
+						<option value="*{authority}">選択不可</option>
 					</select>
 				</div>
 
