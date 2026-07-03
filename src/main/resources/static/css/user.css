@@ -65,7 +65,14 @@ body{
 	margin-top: 60px;
 }
 
-.create-button{
+.button-row{
+	display: flex;
+	justify-content: center;
+	gap: 40px;
+}
+
+.create-button,
+.delete-button{
 	width: 320px;
 	height: 110px;
 	
@@ -76,10 +83,6 @@ body{
 	background-color: white;
 
 	cursor: pointer;
-}
-
-.create-button:hover{
-	background-color: #dddddd;
 }
 
 .back-button{
@@ -99,6 +102,9 @@ body{
 	cursor: pointer;
 }
 
+.create-button:hover,
+.delete-button:hover,
 .back-button:hover{
 	background-color: #dddddd;
 }
+

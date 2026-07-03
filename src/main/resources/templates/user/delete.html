@@ -14,24 +14,30 @@
 			<div class="form-area" th:object="${deleteUser}">
 				<div class="form-row">
 					<label for="No" class="form-label">No</label>
-					<input type="number" id="No" name="No" class="form-control" value="*{id}">
+					<input type="number" id="No" name="No" class="form-control" th:value="*{id}">
 				</div>
 				 
 				<div class="form-row">
 					<label for="name" class="form-label">氏名</label>
-					<input type="text" id="name" name="name" class="form-control" value="*{username}">
+					<input type="text" id="name" name="name" class="form-control"
+					th:value="*{username}">
 				</div>
 				
 				<div class="form-row">
 					<label for="authority" class="form-label">権限</label>
-					<select id="authority" class="form-control" disabled>
-						<option value="*{authority}">選択不可</option>
-					</select>
+					<input type="text" id="authority" class="form-control" th:value="*{authority}"
+					readonly>
 				</div>
 
 				<div class="button-area">
-					<button type="submit" class="create-button">検索する</button>
+					<div class="button-row">
+					
+						<button type="submit" class="create-button">検索する</button>
+						<button type="submit" class="delete-button"
+						th:if="*{id != null}" th:formaction="@{/users/delete}">削除する</button>
+					</div>
 					<a th:href="@{/}" class="back-button">戻る</a>
+					
 				</div>
 			</div>
 			

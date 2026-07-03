@@ -48,7 +48,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/delete")
-	public String showUserDelete() {
+	public String showUserDelete(Model model) {
+		model.addAttribute("deleteUser", new User());
 		return "user/delete";
 	}
 	
@@ -71,13 +72,27 @@ public class UserController {
 		}
 		
 		if(user == null) {
-			model.addAttribute("message", "Noまたは氏名を入力してください。");
+			model.addAttribute("message", "該当するユーザーが見つかりません。");
 			return "user/delete";
 		} else {
 			model.addAttribute("deleteUser", user);
 		}
 		
 		return "user/delete";
+	}
+	
+	@PostMapping("/delete")
+	public String deleteUser(@RequestParam(required = false) Integer No,
+			RedirectAttributes redirectAttributes) {
+		
+		if(No == 1) {
+			redirectAttributes.addFlashAttribute("message","削除できないユーザーです。");
+		} else {
+			userservice.deleteUser(No);
+			redirectAttributes.addFlashAttribute("message","ユーザーを削除しました。");
+		}
+		return "redirect:/users/delete";
+		
 	}
 	
 }
