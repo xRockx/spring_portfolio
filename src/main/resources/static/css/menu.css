@@ -55,6 +55,26 @@ body{
     cursor: pointer;
 }
 
-.menu-button:hover{
+.logout-area{
+	text-align: center;
+	margin-top: 80px;
+}
+
+.logout-button{
+	width: 260px;
+	height: 75px;
+	
+	font-size: 30px;
+	font-weight: bold;
+	
+	border: 4px solid black;
+	border-radius: 25px;
+	background-color: white;
+	
+	cursor: pointer;
+}
+
+.menu-button:hover,
+.logout-button:hover{
     background-color: #dddddd;
 }
