@@ -8,18 +8,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.webapp.entity.LoginUser;
+import com.example.webapp.entity.User;
+import com.example.webapp.repository.UserMapper;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
-public class LoginUserDatailsServiceImpl implements UserDetailsService {
-
+@RequiredArgsConstructor
+public class LoginUserDetailsServiceImpl implements UserDetailsService {
+	/** DI */
+	private final UserMapper userMapper;
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// 「ユーザー名：tarou」が入力されると、UserDetailsの実装クラスを返す
-        if (username.equals("tarou")) {
+		 // 「ユーザーテーブル」からデータを取得
+		User user = userMapper.selectByUsername(username);
+        if (user != null) {
             // 対象データが存在する
             // UserDetailsの実装クラスを返す
-            return new LoginUser("tarou",
-                                 "pass",
+            return new LoginUser(user.getUsername(),
+                                 user.getPassword(),
                                  Collections.emptyList());
         } else {
             // 対象データが存在しない
