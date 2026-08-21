@@ -29,6 +29,8 @@ public class SecurityConfig {
 			.requestMatchers("/login").permitAll()
 			//login.cssへのアクセスは認証を必要としない
 			.requestMatchers("/css/login.css").permitAll()
+			// 【管理者権限設定】url:/users/**は管理者しかアクセスできない
+		    .requestMatchers("/users/**").hasAuthority("ADMIN")
 			// その他のリクエストは認証が必要
 			.anyRequest().authenticated())
 			// ★フォームベースのログイン設定

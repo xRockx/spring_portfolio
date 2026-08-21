@@ -1,5 +1,6 @@
 package com.example.webapp.service.impl;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ public class UserServiceImpl implements UserService {
 
 	/**	DI */
 	private final UserMapper userMapper;
+	private final PasswordEncoder passwordEncoder;
 	
 	@Override
 	public User findByIdUser(Integer id) {
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void insertUser(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userMapper.insert(user);
 	}
 
