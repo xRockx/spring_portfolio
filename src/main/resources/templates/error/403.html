@@ -11,9 +11,13 @@
 			<div class="title">403 - アクセス拒否</div>
 		</div>
 		<div class="message-area">
-			このページにアクセスする権限がありません。
+			<p class="message">
+				このページにアクセスする権限がありません。
+			</p>
 		</div>
-		<a th:href="@{/}">メニューへ</a>
+		<div class="menu-area">
+			<a th:href="@{/}" class="menu-link">メニューへ</a>
+		</div>
 	</div>
 </body>
 </html>

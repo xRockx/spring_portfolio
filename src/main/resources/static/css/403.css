@@ -1,2 +1,58 @@
 @charset "UTF-8";
 
+body{
+    font-family: sans-serif;
+}
+
+.container{
+    width: 900px;
+    margin: 0 auto;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.title{
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.message-area{
+	margin-top: 100px;
+	text-align: center;
+}
+
+.message{
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 80px;
+}
+
+.menu-area{
+    text-align: center;
+}
+
+.menu-link{
+	display: inline-block;
+	width: 200px;
+	padding: 20px 0;
+	
+	font-size: 28px;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	
+	border: 3px solid black;
+	border-radius: 20px;
+	background-color: white;
+	
+	cursor: pointer;
+}
+
+.menu-link:hover{
+	background-color: #dddddd;
+}
