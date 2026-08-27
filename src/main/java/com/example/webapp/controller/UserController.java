@@ -73,6 +73,7 @@ public class UserController {
 		
 		if(user == null) {
 			model.addAttribute("message", "該当するユーザーが見つかりません。");
+			model.addAttribute("deleteUser", new User());
 			return "user/delete";
 		} else {
 			model.addAttribute("deleteUser", user);
