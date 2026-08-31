@@ -7,9 +7,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 public class LoginUser extends User {
-
-	public LoginUser(String username, @Nullable String password, Collection<? extends GrantedAuthority> authorities) {
+	
+	private Integer id;
+	
+	public LoginUser(Integer id, String username, @Nullable String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
+		this.id = id;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 }

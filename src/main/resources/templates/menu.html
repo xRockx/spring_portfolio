@@ -21,11 +21,11 @@
 
 		<div class="menu-area">
 
-			<form th:action="@{/dvds/rental/{id}(id=${user.id})}" method="get" class="menu-form">
+			<form th:action="@{/dvds/rental}" method="get" class="menu-form">
 				<button type="submit" class="menu-button">DVDレンタル</button>
 			</form>
 
-			<form th:action="@{/dvds/return/{id}(id=${user.id})}" method="get" class="menu-form">
+			<form th:action="@{/dvds/return}" method="get" class="menu-form">
 				<button type="submit" class="menu-button">DVD返却</button>
 			</form>
 			

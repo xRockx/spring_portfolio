@@ -30,7 +30,8 @@ public class LoginUserDetailsServiceImpl implements UserDetailsService {
 		if (user != null) {
 			// 対象データが存在する
 			// UserDetailsの実装クラスを返す
-			return new LoginUser(user.getUsername(),
+			return new LoginUser(user.getId(),
+					user.getUsername(),
 					user.getPassword(),
 					getAuthorityList(user.getAuthority()));
 		} else {
