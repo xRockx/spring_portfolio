@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="title">DVDレンタル</div>
 		<p class="message" th:text="${message}"></p>
-		<form th:action="@{/dvds/rental/{id}(id=${user.id})}" method="post" class="dvd-form">
+		<form th:action="@{/dvds/rental}" method="post" class="dvd-form">
 			<div class="table-scroll">
 				<table class="dvd-table">
 					<thead>

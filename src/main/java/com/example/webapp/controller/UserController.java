@@ -1,5 +1,6 @@
 package com.example.webapp.controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.webapp.entity.LoginUser;
 import com.example.webapp.entity.Role;
 import com.example.webapp.entity.User;
 import com.example.webapp.service.UserService;
@@ -54,11 +56,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/delete/search")
-	public String searchDeleteUser(@RequestParam(required = false) Integer No,
+	public String searchDeleteUser(Authentication authentication,
+			@RequestParam(required = false) Integer No,
 			@RequestParam(required = false) String name,
 			Model model) {
 		
 		User user = null;
+		LoginUser loginuser = (LoginUser)authentication.getPrincipal();
+		Integer id = loginuser.getId();
 		
 		if(No == null && (name == null || name.isBlank())) {
 			model.addAttribute("message", "Noまたは氏名を入力してください。");
@@ -75,7 +80,12 @@ public class UserController {
 			model.addAttribute("message", "該当するユーザーが見つかりません。");
 			model.addAttribute("deleteUser", new User());
 			return "user/delete";
-		} else {
+		}else if(No == 1 || No.equals(id)) {
+			model.addAttribute("message", "削除できないユーザーです。");
+			model.addAttribute("deleteUser", new User());
+			return "user/delete";
+		}
+		else {
 			model.addAttribute("deleteUser", user);
 		}
 		
@@ -83,10 +93,14 @@ public class UserController {
 	}
 	
 	@PostMapping("/delete")
-	public String deleteUser(@RequestParam(required = false) Integer No,
+	public String deleteUser(Authentication authentication,
+			@RequestParam(required = false) Integer No,
 			RedirectAttributes redirectAttributes) {
 		
-		if(No == 1) {
+		LoginUser loginuser = (LoginUser)authentication.getPrincipal();
+		Integer id = loginuser.getId();
+		
+		if(No == 1 || No.equals(id)) {
 			redirectAttributes.addFlashAttribute("message","削除できないユーザーです。");
 		} else {
 			userservice.deleteUser(No);

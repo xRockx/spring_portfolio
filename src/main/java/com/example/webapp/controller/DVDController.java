@@ -2,19 +2,18 @@ package com.example.webapp.controller;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.webapp.entity.DVD;
-import com.example.webapp.entity.User;
+import com.example.webapp.entity.LoginUser;
 import com.example.webapp.service.DVDService;
-import com.example.webapp.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,20 +24,20 @@ public class DVDController {
 
 	/**	DI */
 	private final DVDService dvdservice;
-	private final UserService userservice;
 
-	@GetMapping("/rental/{id}")
-	public String showRental(@PathVariable Integer id, Model model) {
-		User user = userservice.findByIdUser(id);
+	@GetMapping("/rental")
+	public String showRental(Model model) {
 		List<DVD> dvdList = dvdservice.findRentalAllDVD();
-		model.addAttribute("user", user);
 		model.addAttribute("dvdList", dvdList);
 		return "dvd/rental";
 	}
 
-	@PostMapping("/rental/{id}")
-	public String entryRental(@PathVariable Integer id, @RequestParam(required = false)
+	@PostMapping("/rental")
+	public String entryRental(Authentication authentication, @RequestParam(required = false)
 	List<Integer> dvdIds, RedirectAttributes redirectAttributes) {
+		LoginUser loginuser = (LoginUser)authentication.getPrincipal();
+		Integer id = loginuser.getId();
+		
 		if(dvdIds == null || dvdIds.isEmpty()) {
 			redirectAttributes.addFlashAttribute("message","DVDを選択してください。");
 		}
@@ -47,22 +46,24 @@ public class DVDController {
 			redirectAttributes.addFlashAttribute("message","レンタルが完了しました。");
 		}
 		
-		return "redirect:/dvds/rental/" + id;
+		return "redirect:/dvds/rental";
 	}
 	
 	
-	@GetMapping("/return/{id}")
-	public String showReturn(@PathVariable Integer id, Model model) {
-		User user = userservice.findByIdUser(id);
+	@GetMapping("/return")
+	public String showReturn(Authentication authentication, Model model) {
+		LoginUser loginuser = (LoginUser)authentication.getPrincipal();
+		Integer id = loginuser.getId();
+		
 		List<DVD> dvdList = dvdservice.findReturnAllDVD(id);
-		model.addAttribute("user", user);
 		model.addAttribute("dvdList", dvdList);
+		
 		return "dvd/return";
 	}
 	
-	@PostMapping("/return/{id}")
-	public String entryReturn(@PathVariable Integer id, @RequestParam(required = false)
-	List<Integer> dvdIds, RedirectAttributes redirectAttributes) {
+	@PostMapping("/return")
+	public String entryReturn(@RequestParam(required = false)	List<Integer> dvdIds,
+			RedirectAttributes redirectAttributes) {
 		if(dvdIds == null || dvdIds.isEmpty()) {
 			redirectAttributes.addFlashAttribute("message","DVDを選択してください。");
 		}
@@ -71,6 +72,6 @@ public class DVDController {
 			redirectAttributes.addFlashAttribute("message","返却が完了しました。");
 		}
 		
-		return "redirect:/dvds/return/" + id;
+		return "redirect:/dvds/return";
 	}
 }

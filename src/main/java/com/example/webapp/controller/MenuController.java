@@ -6,9 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.webapp.entity.User;
-import com.example.webapp.service.UserService;
-
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -16,14 +13,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MenuController {
 	
-	private final UserService userservice;
+//	private final UserService userservice;
 	
 	@GetMapping
 	public String showMenu(Authentication authentication,Model model) {
 		//templatesフォルダ配下のmenu.htmlに遷移
 		
-		User user = userservice.findByUsername(authentication.getName());
-		model.addAttribute("user", user);
+//		User user = userservice.findByUsername(authentication.getName());
+//		model.addAttribute("user", user);
 		
 		return "menu";
 	}

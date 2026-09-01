@@ -9,7 +9,7 @@
 	<div class="container">
 		<div class="title">DVD返却</div>
 		<p class="message" th:text="${message}"></p>
-		<form th:action="@{/dvds/return/{id}(id=${user.id})}" method="post" class="dvd-form">
+		<form th:action="@{/dvds/return}" method="post" class="dvd-form">
 			<div class="table-scroll">
 				<table class="dvd-table">
 					<thead>
@@ -31,7 +31,6 @@
 					</tbody>
 				</table>
 			</div>
-
 
 			<div class="button-area">
 				<button type="submit" class="rental-button">返却する</button>
