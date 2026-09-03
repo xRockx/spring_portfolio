@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.webapp.entity.LoginUser;
 import com.example.webapp.entity.Role;
 import com.example.webapp.entity.User;
+import com.example.webapp.service.DVDService;
 import com.example.webapp.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class UserController {
 
 	/**	DI */
 	private final UserService userservice;
+	private final DVDService dvdservice;
 
 	@GetMapping("/create")
 	public String showUser() {
@@ -36,7 +38,7 @@ public class UserController {
 			RedirectAttributes redirectAttributes) {
 		
 		if(name == null || name.isBlank()) {
-			redirectAttributes.addFlashAttribute("message","氏名を入力してください。");
+			redirectAttributes.addFlashAttribute("message","名前を入力してください。");
 		}
 		else if(pass == null || pass.isBlank()) {
 			redirectAttributes.addFlashAttribute("message","パスワードを入力してください。");
@@ -66,7 +68,7 @@ public class UserController {
 		Integer id = loginuser.getId();
 		
 		if(No == null && (name == null || name.isBlank())) {
-			model.addAttribute("message", "Noまたは氏名を入力してください。");
+			model.addAttribute("message", "Noまたは名前を入力してください。");
 			return "user/delete";
 		}
 		
@@ -74,6 +76,9 @@ public class UserController {
 			user = userservice.findByIdUser(No);
 		} else {
 			user = userservice.findByUsername(name);
+			if(user != null) {
+				No = user.getId();
+			}
 		}
 		
 		if(user == null) {
@@ -82,6 +87,10 @@ public class UserController {
 			return "user/delete";
 		}else if(No == 1 || No.equals(id)) {
 			model.addAttribute("message", "削除できないユーザーです。");
+			model.addAttribute("deleteUser", new User());
+			return "user/delete";
+		}else if(!dvdservice.findReturnAllDVD(No).isEmpty()) {
+			model.addAttribute("message", "DVDをレンタルしているユーザーです。");
 			model.addAttribute("deleteUser", new User());
 			return "user/delete";
 		}
@@ -100,7 +109,7 @@ public class UserController {
 		LoginUser loginuser = (LoginUser)authentication.getPrincipal();
 		Integer id = loginuser.getId();
 		
-		if(No == 1 || No.equals(id)) {
+		if(No == 1 || No.equals(id) || !dvdservice.findReturnAllDVD(No).isEmpty()) {
 			redirectAttributes.addFlashAttribute("message","削除できないユーザーです。");
 		} else {
 			userservice.deleteUser(No);
