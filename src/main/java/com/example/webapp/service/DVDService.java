@@ -23,7 +23,7 @@ public interface DVDService {
 	/**
 	 * DVDレンタル（レンタルユーザーの追加）
 	 */
-	void rentalDVD(Integer userId, List<Integer> dvdIds);
+	int rentalDVD(Integer userId, List<Integer> dvdIds);
 	
 	/**
 	 * DVDの更新（レンタルユーザーの削除など）

@@ -35,10 +35,12 @@ public class DVDServiceImpl implements DVDService {
 	}
 
 	@Override
-	public void rentalDVD(Integer userId, List<Integer> dvdIds) {
+	public int rentalDVD(Integer userId, List<Integer> dvdIds) {
+		int count = 0;
 		for(Integer id : dvdIds) {
-			dvdMapper.rental(userId, id);
+			count += dvdMapper.rental(userId, id);
 		}
+		return count;
 	}
 	
 	@Override

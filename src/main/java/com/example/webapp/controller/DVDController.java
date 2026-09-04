@@ -42,8 +42,13 @@ public class DVDController {
 			redirectAttributes.addFlashAttribute("message","DVDを選択してください。");
 		}
 		else {
-			dvdservice.rentalDVD(id, dvdIds);
-			redirectAttributes.addFlashAttribute("message","レンタルが完了しました。");
+			int count = dvdservice.rentalDVD(id, dvdIds);
+			if(count > 0) {
+				redirectAttributes.addFlashAttribute("message",count + "枚のレンタルが完了しました。");
+			} else {
+				redirectAttributes.addFlashAttribute("message","レンタルできませんでした。");
+			}
+			
 		}
 		
 		return "redirect:/dvds/rental";

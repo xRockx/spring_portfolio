@@ -69,6 +69,7 @@ public class UserController {
 		
 		if(No == null && (name == null || name.isBlank())) {
 			model.addAttribute("message", "Noまたは名前を入力してください。");
+			model.addAttribute("deleteUser", new User());
 			return "user/delete";
 		}
 		
