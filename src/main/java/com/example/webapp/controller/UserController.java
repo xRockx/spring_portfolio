@@ -38,7 +38,7 @@ public class UserController {
 			RedirectAttributes redirectAttributes) {
 		
 		if(name == null || name.isBlank()) {
-			redirectAttributes.addFlashAttribute("message","名前を入力してください。");
+			redirectAttributes.addFlashAttribute("message","ユーザー名を入力してください。");
 		}
 		else if(pass == null || pass.isBlank()) {
 			redirectAttributes.addFlashAttribute("message","パスワードを入力してください。");
@@ -68,7 +68,7 @@ public class UserController {
 		Integer id = loginuser.getId();
 		
 		if(No == null && (name == null || name.isBlank())) {
-			model.addAttribute("message", "Noまたは名前を入力してください。");
+			model.addAttribute("message", "Noまたはユーザー名を入力してください。");
 			model.addAttribute("deleteUser", new User());
 			return "user/delete";
 		}
