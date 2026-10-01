@@ -54,7 +54,6 @@ public class DVDController {
 		return "redirect:/dvds/rental";
 	}
 	
-	
 	@GetMapping("/return")
 	public String showReturn(Authentication authentication, Model model) {
 		LoginUser loginuser = (LoginUser)authentication.getPrincipal();
@@ -68,12 +67,16 @@ public class DVDController {
 	
 	@PostMapping("/return")
 	public String entryReturn(@RequestParam(required = false)	List<Integer> dvdIds,
+			Authentication authentication,
 			RedirectAttributes redirectAttributes) {
+		LoginUser loginuser = (LoginUser)authentication.getPrincipal();
+		Integer id = loginuser.getId();
+		
 		if(dvdIds == null || dvdIds.isEmpty()) {
 			redirectAttributes.addFlashAttribute("message","DVDを選択してください。");
 		}
 		else {
-			dvdservice.returnofDVD(dvdIds);
+			dvdservice.returnofDVD(id, dvdIds);
 			redirectAttributes.addFlashAttribute("message","返却が完了しました。");
 		}
 		

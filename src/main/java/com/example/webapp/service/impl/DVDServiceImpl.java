@@ -44,9 +44,9 @@ public class DVDServiceImpl implements DVDService {
 	}
 	
 	@Override
-	public void returnofDVD(List<Integer> dvdIds) {
-		for(Integer id : dvdIds) {
-			dvdMapper.returnof(id);
+	public void returnofDVD(Integer userId, List<Integer> dvdIds) {
+		for(Integer dvdid : dvdIds) {
+			dvdMapper.returnof(userId, dvdid);
 		}
 	}
 

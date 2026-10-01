@@ -28,6 +28,6 @@ public interface DVDService {
 	/**
 	 * DVDの更新（レンタルユーザーの削除など）
 	 */
-	void returnofDVD(List<Integer> dvdIds);
+	void returnofDVD(Integer userId, List<Integer> dvdIds);
 	
 }

@@ -35,6 +35,6 @@
 	</update>
 	<!-- 【UPDATE】DVDの更新（レンタルユーザーの削除） -->
 	<update id="returnof">
-		UPDATE dvds SET users_id = NULL WHERE id = #{dvdId};
+		UPDATE dvds SET users_id = NULL WHERE id = #{dvdId} AND users_id = #{userId};
 	</update>
 </mapper>
